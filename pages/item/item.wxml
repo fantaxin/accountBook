@@ -1,0 +1,6 @@
+<view>item</view>
+<view>{{item.type}}</view>
+<view>{{item.time}}</view>
+<view>{{item.isExpand}}</view>
+<view>{{item.note}}</view>
+<view>{{item.money}}</view>

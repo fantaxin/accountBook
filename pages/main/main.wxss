@@ -1,0 +1,183 @@
+/**main.wxss**/
+
+
+.total {
+    position: fixed;
+    left: 0rpx;
+    top: 0rpx;
+    width: 750rpx;
+    height: 300rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 50rpx;
+    background-color: #00CE84;
+    border-radius: 50rpx;
+    border-color: white;
+    border-style: solid;
+    border-width: 25rpx;
+    border-left-width: 35rpx;
+    border-right-width: 35rpx;
+    z-index: 1;
+}
+
+.BYZC {
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+    width: fit-content;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    padding-left: 30rpx;
+    border-radius: 25rpx;
+    background-color: #00CE84;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+}
+
+.ZC {
+    position: absolute;
+    left: 0rpx;
+    top: 68rpx;
+    width: fit-content;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 0rpx;
+    padding-left: 30rpx;
+    border-radius: 25rpx;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+    font-size: xx-large;
+}
+
+.SR {
+    position: absolute;
+    left: 0rpx;
+    top: 140rpx;
+    width: fit-content;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    padding-left: 30rpx;
+    border-radius: 25rpx;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+}
+
+.SYYS {
+    position: absolute;
+    right: 0rpx;
+    top: 130rpx;
+    width: fit-content;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    padding-left: 30rpx;
+    border-radius: 25rpx;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+}
+
+.statistics {
+    position: center;
+    top: 190rpx;
+    width: fit-content;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    border-radius: 25rpx;
+    color: #F2FBF8;
+    background-color: white;
+    font-family: "Fira Mono";
+    font-size: medium;
+    font-style: normal;
+}
+
+.data {
+    margin-top: 100rpx;
+    position: relative;
+    z-index: 0;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.item {
+    left: 0rpx;
+    width: 750rpx;
+    height: 100rpx;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: white;
+    border-color: #ffffff;
+    border-bottom-color: rgba(114, 105, 105, 0.199);
+    border-style: solid;
+    border-width: 2rpx;
+}
+
+.item-image {
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+    margin-top: 15rpx;
+    padding: 10rpx;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0rpx;
+}
+
+.item-type {
+    display: inline-block;
+}
+
+.item-time {
+    display: inline-block;
+}
+
+.item-money {
+    display: inline-block;
+}
+
+.item-note {
+    display: inline-block;
+}
+
+.navigation_bar {
+    position: absolute;
+    left: 0rpx;
+    bottom: 0rpx;
+    width: 100%;
+    height: 100rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 25rpx;
+    border-radius: 0rpx;
+    border-color: black;
+    border-style: solid;
+    border-width: 2rpx;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+}
+
+.userinfo-avatar {
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.usermotto {
+    margin-top: 200px;
+}

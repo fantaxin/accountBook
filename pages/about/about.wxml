@@ -1,0 +1,5 @@
+<view class="container">
+    about
+    <!-- 底部导航栏 -->
+	<mytabbar tabbar="{{tabbar}}"></mytabbar>
+</view>

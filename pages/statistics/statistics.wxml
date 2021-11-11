@@ -1,0 +1,5 @@
+<view class="container">
+    statistics
+    <mytabbar tabbar="{{tabbar}}"></mytabbar>
+    <!-- <mytabbar></mytabbar> -->
+</view>

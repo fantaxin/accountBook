@@ -1,0 +1,4 @@
+<view class="container">
+    setting
+	<mytabbar tabbar="{{tabbar}}"></mytabbar>
+</view>
