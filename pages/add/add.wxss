@@ -1,0 +1,16 @@
+.input {
+    position: absolute;
+    left: 25rpx;
+    top: 25rpx;
+    width: 700rpx;
+    height: 300rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 20rpx;
+    background-color: white;
+    border-radius: 50rpx;
+    border-style: solid;
+    border-width: 5rpx;
+    border-color: #00CE84;
+    z-index: 0;
+}

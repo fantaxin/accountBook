@@ -1,4 +1,7 @@
 // app.js
+wx.cloud.init({
+  env:"fantasy-8gy3bgkr80ffde7e"
+})
 App({
   onLaunch: function () {
 
@@ -35,6 +38,8 @@ App({
       }
     });
   },
+
+
 
   editTabbar: function () {
     let tabbar = this.globalData.tabBar;
@@ -88,6 +93,6 @@ App({
           "text": "关于"
         },
       ]
-    }
+    },
   },
 })

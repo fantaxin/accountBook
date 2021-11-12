@@ -1,0 +1,64 @@
+var func = {
+    numFixed: function (value, n) {
+        return value.toFixed(n);
+    },
+    // 餐饮、购物、日用、交通、零食、娱乐、衣服、其它
+    // 工资、理财、借款、其它
+    getType: function (type) {
+        switch (type) {
+            case 1:
+                return '餐饮';
+            case 2:
+                return '购物';
+            case 3:
+                return '日用';
+            case 4:
+                return '交通';
+            case 5:
+                return '零食';
+            case 6:
+                return '娱乐';
+            case 7:
+                return '衣服';
+            case 8:
+                return '其它';
+            case 9:
+                return '工资';
+            case 10:
+                return '理财';
+            case 11:
+                return '借款';
+            default:
+                return '其它';
+        }
+    },
+    isIncome: function (type) {
+        if (type > 8)
+            return true;
+        else
+            return false;
+    },
+    splitDate: function (date) {
+        if (date == null)
+            return ['--', '--'];
+        else
+            return date.split(" ");
+    },
+    getImageSrc: function (type) {
+        // var img = new Image();
+        // img.src = '../images/'+type+'.png';
+        // return img;
+        if (type == null)
+            return '../../images/' + 12 + '.png';
+        else
+            return '../../images/' + type + '.png';
+    },
+}
+
+module.exports = {
+    numFixed: func.numFixed,
+    getType: func.getType,
+    isIncome: func.isIncome,
+    splitDate: func.splitDate,
+    getImageSrc: func.getImageSrc,
+}

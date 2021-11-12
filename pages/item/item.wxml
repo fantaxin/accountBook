@@ -1,6 +1,49 @@
-<view>item</view>
-<view>{{item.type}}</view>
-<view>{{item.time}}</view>
+<!-- <view>{{item.type}}</view>
+<view>{{item.date}}</view>
 <view>{{item.isExpand}}</view>
 <view>{{item.note}}</view>
-<view>{{item.money}}</view>
+<view>{{item.money}}</view> -->
+<!-- _id: 1,
+time: '2021.11.10 12:35',
+isIncome: false,
+type: 1,
+money: 9.5,
+note: '肯德基',
+newdata: true -->
+<!-- item page -->
+<wxs module="func" src="../../utils/func.wxs"></wxs>
+<view>
+    <!-- item -->
+    <view class="item-total">
+        <!-- 图片+文字 -->
+        <view class="img-type">
+            <image src='{{func.getImageSrc(item.type)}}' class="image" />
+            <!-- {{func.getImageSrc(item.type)}} -->
+            <text class="type" style="font-size: larger">{{func.getType(item.type)}}</text>
+        </view>
+        <view class="money info">
+            <view wx:if="{{!func.isIncome(item.type)}}" style="font-size: x-large">
+                -{{func.numFixed(item.money,2)}}元
+            </view>
+            <view wx:else style="font-size: x-large">+{{func.numFixed(item.money,2)}}元</view>
+        </view>
+        <view class="data info">
+            <text space="nbsp">日期 :  {{func.splitDate(item.date)[0]}}</text>
+        </view>
+        <view class="time info">
+            <text space="nbsp">时间 :  {{func.splitDate(item.date)[1]}}</text>
+        </view>
+        <view class="note info">
+            <text space="nbsp">备注 :  {{item.note}}</text>
+        </view>
+    </view>
+    <!-- 编辑+删除 -->
+    <view class="btn">
+        <view class="edit-btn">
+            <text class="edit">编辑</text>
+        </view>
+        <view class="del-btn">
+            <text class="del">删除</text>
+        </view>
+    </view>
+</view>

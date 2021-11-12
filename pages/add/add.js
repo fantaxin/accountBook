@@ -5,6 +5,6 @@ Page({
         tabbar: {},
     },
     onLoad: function (options) {
-        //app.editTabbar();
+
     },
 })

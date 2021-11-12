@@ -2,16 +2,22 @@
 const app = getApp()
 Page({
     data: {
-        item: {}
+        item: {},
+        app: app
     },
     onLoad(option) {
-        // this.setData({item: JSON.parse(option.data)})
-        const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFrommain', function (data) {
-            this.setData({
-                item: JSON.parse(option.data)
-            })
+        this.setData({
+            item: JSON.parse(option.data)
         })
+
+
+        // var that = this
+        // const eventChannel = that.getOpenerEventChannel()
+        // eventChannel.on('acceptDataFrommain', function (data) {
+        //     that.setData({
+        //         item: JSON.parse(option.data)
+        //     })
+        // })
 
 
         // const eventChannel = this.getOpenerEventChannel()
@@ -25,5 +31,8 @@ Page({
         // eventChannel.on('acceptDataFromOpenerPage', function (data) {
         //     console.log(data)
         // })
+    },
+    clickEdit() {
+
     }
 })

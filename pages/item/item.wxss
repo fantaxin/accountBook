@@ -1,0 +1,146 @@
+.item-total {
+    position: fixed;
+    left: 25rpx;
+    top: 25rpx;
+    width: 700rpx;
+    height: 300rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 20rpx;
+    background-color: #00CE84;
+    border-radius: 50rpx;
+    border-style: none;
+    border-width: 0rpx;
+    z-index: 0;
+}
+
+.img-type {
+    position: relative;
+    top: 10rpx;
+    left: 15rpx;
+    display: inline-block;
+    width: fit-content;
+    height: 80rpx;
+    margin-top: 0rpx;
+    padding: 0rpx;
+    border-width: 0rpx;
+    z-index: 1;
+}
+
+.image {
+    position: relative;
+    top: 0rpx;
+    left: 0rpx;
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+    margin-top: 0rpx;
+    padding: 15rpx;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0rpx;
+    z-index: 1;
+}
+
+.type {
+    position: relative;
+    top: -27rpx;
+    left: 0rpx;
+    width: fit-content;
+    height: auto;
+    display: inline-block;
+    margin-left: 20rpx;
+    padding: 0rpx;
+    border-width: 0rpx;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+    z-index: 1;
+}
+
+.info {
+    position: absolute;
+    top: 110rpx;
+    left: 40rpx;
+    width: fit-content;
+    height: auto;
+    display: inline-block;
+    margin-top: 10rpx;
+    padding: 0rpx;
+    border-width: 0rpx;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+    z-index: 1;
+}
+
+.money.info {
+    top: 47rpx;
+    left: auto;
+    right: 60rpx;
+    margin-right: 0rpx;
+    margin-top: 0rpx;
+}
+
+.time.info {
+    top: 160rpx;
+}
+
+.note.info {
+    top: 210rpx;
+}
+
+.btn {
+    position: fixed;
+    left: 25rpx;
+    top: 340rpx;
+    width: 700rpx;
+    height: 100rpx;
+    display: block;
+    box-sizing: border-box;
+    background-color: #00CE84;
+    border-radius: 30rpx;
+    border-style: none;
+    border-width: 0rpx;
+    z-index: 0;
+}
+
+.edit-btn {
+    position: absolute;
+    left: 0rpx;
+    width: 50%;
+    height: 100%;
+}
+
+.edit {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    text-align: center;
+    font-size: larger;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+    border-right-color: #F2FBF8;
+    border-right-width: 1rpx;
+    border-right-style: solid;
+}
+
+.del-btn {
+    position: absolute;
+    right: 0rpx;
+    width: 50%;
+    height: 100%;
+}
+
+.del {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    text-align: center;
+    font-size: larger;
+    color: #F2FBF8;
+    font-family: "Fira Mono";
+    border-left-color: #F2FBF8;
+    border-left-width: 1rpx;
+    border-left-style: solid;
+}

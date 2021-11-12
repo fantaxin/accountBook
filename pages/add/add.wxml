@@ -1,4 +1,12 @@
 <view class="container">
-    <!-- 餐饮、购物、日用、交通、零食、娱乐、衣服、旅行、学习 -->
-    <!-- 工资、理财 -->
+    <!-- 餐饮、购物、日用、交通、零食、娱乐、衣服、其它
+         工资、理财、借款、其它 -->
+    <view class="input">
+        <!-- 项目 -->
+        <!-- 金额 -->
+        <input type="digit" value="1" style="border-style: solid;" />
+        <!-- 时间 -->
+        <!-- 备注 -->
+        <input type="text" value="1" style="border-style: solid;" />
+    </view>
 </view>

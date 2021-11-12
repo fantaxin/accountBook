@@ -1,15 +1,17 @@
 {
   "pages":[
-    "pages/main/main", 
+    "pages/main/main",
+    "pages/add/add",  
     "pages/statistics/statistics",
-    "pages/add/add",
     "pages/setting/setting",
     "pages/about/about",
     "components/tabbarComponent/tabbar",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/item/item"
+    "pages/item/item",
+    "pages/test1/test"
   ],
+  "cloud": true,
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
