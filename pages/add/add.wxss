@@ -1,16 +1,236 @@
 .input {
     position: absolute;
-    left: 25rpx;
-    top: 25rpx;
-    width: 700rpx;
-    height: 300rpx;
+    left: 65rpx;
+    top: 110rpx;
+    width: 620rpx;
+    height: 800rpx;
     display: block;
     box-sizing: border-box;
     padding: 20rpx;
-    background-color: white;
+    background-color: whitesmoke;
+    box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.3);
     border-radius: 50rpx;
-    border-style: solid;
+    border-style: none;
     border-width: 5rpx;
-    border-color: #00CE84;
+    border-color: black;
     z-index: 0;
+}
+
+.btn {
+    position: absolute;
+    left: 0rpx;
+    bottom: 0rpx;
+    width: 100%;
+    height: 110rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    padding-top: 27rpx;
+    border-top-style: solid;
+    border-width: 3rpx;
+    border-top-color: rgba(0, 0, 0, 0.5);
+    color: black;
+    font-family: "Fira Mono";
+    font-size: larger;
+    text-align: center;
+}
+
+.image-type {
+    position: absolute;
+    left: 0rpx;
+    top: 0rpx;
+    width: 100%;
+    height: 140rpx;
+    display: block;
+    box-sizing: border-box;
+    padding: 10rpx;
+    border-bottom-style: solid;
+    border-width: 3rpx;
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    color: black;
+    font-family: "Fira Mono";
+}
+
+.image-type .image {
+    position: relative;
+    width: 65rpx;
+    height: 65rpx;
+    display: inline-block;
+    margin-top: 15rpx;
+    margin-left: 15rpx;
+    padding: 15rpx;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-width: 1rpx;
+    z-index: 1;
+}
+
+.image-type-text {
+    position: relative;
+    bottom: 30rpx;
+    margin-left: 25rpx;
+    text-align: center;
+    display: inline-block;
+    font-size: larger;
+    color: black;
+}
+
+
+.input-item {
+    position: absolute;
+    display: block;
+}
+
+.input-item.money-item {
+    top: 160rpx;
+}
+
+.input-item.date-item {
+    top: 280rpx;
+}
+
+.input-item.time-item {
+    top: 400rpx;
+}
+
+.input-item.note-item {
+    top: 520rpx;
+}
+
+.text {
+    position: relative;
+    bottom: 25rpx;
+    margin-left: 25rpx;
+    text-align: center;
+    display: inline-block;
+    font-size: larger;
+    color: black;
+}
+
+.text.money-item {
+    bottom: 25rpx;
+}
+
+.text.date-item {
+    bottom: 0rpx;
+}
+
+.myinput {
+    position: relative;
+    top: 0rpx;
+    width: 400rpx;
+    height: 75rpx;
+    margin-left: 0rpx;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-top: 25rpx;
+    text-align: left;
+    font-size: larger;
+    color: black;
+    border-bottom-style: solid;
+    border-width: 3rpx;
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.zan-dialog__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    /*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+    display: none;
+}
+
+.zan-dialog__container {
+    position: fixed;
+    left: 50rpx;
+    top: 250rpx;
+    width: 650rpx;
+    /*弹窗布局宽*/
+    height: 650rpx;
+    /*弹窗布局高，与下面弹出距离transform有关*/
+    margin-left: 0rpx;
+    background: #00CE84;
+    transform: translateY(300%);
+    /*弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+    transition: all 0.4s ease;
+    z-index: 12;
+    border-radius: 40rpx;
+    box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.3);
+    /*弹框的悬浮阴影效果，如不需要可注释该行*/
+}
+
+.grid {
+    display: grid;
+    width: 550rpx;
+    margin-top: 5rpx;
+    margin-left: 40rpx;
+    grid-template-columns: repeat(auto-fill, 60px);
+    /** 平铺宽度为100px的单元格 */
+    grid-template-rows: 75px;
+    /** 设置高度为100px */
+    grid-auto-rows: 75px;
+    /** 当容易高度不够时，多余的组件高度将怎么分配，默认的高度由单元格内容决定 */
+    justify-content: center;
+    /** 水平居中  */
+    grid-gap: 10rpx;
+    /** 水平和垂直间距为10rpx*/
+    padding: 10rpx;
+}
+
+.title {
+    display: inline-block;
+    width: 100%;
+    margin-top: 15rpx;
+    text-align: center;
+    font-size: medium;
+    color: whitesmoke;
+}
+
+.item {
+    font-size: 4em;
+    border: 1px none #e5e4e9;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    position: relative;
+    display: block;
+    width: 65rpx;
+    height: 65rpx;
+    margin-top: 0rpx;
+    margin-left: 15rpx;
+    padding: 15rpx;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0rpx;
+    z-index: 1;
+}
+
+.item-text {
+    position: relative;
+    top: 0rpx;
+    text-align: center;
+    display: block;
+    font-size: small;
+    color: whitesmoke;
+}
+
+.zan-dialog--show .zan-dialog__container {
+    transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+    display: block;
 }

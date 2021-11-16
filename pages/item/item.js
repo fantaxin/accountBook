@@ -2,12 +2,12 @@
 const app = getApp()
 Page({
     data: {
-        item: {},
+        message: {},
         app: app
     },
     onLoad(option) {
         this.setData({
-            item: JSON.parse(option.data)
+            message: JSON.parse(option.data)
         })
 
 
@@ -33,6 +33,15 @@ Page({
         // })
     },
     clickEdit() {
+        wx.navigateTo({
+            url: '../add/add?data=' + JSON.stringify(this.data.message),
+            // url: '../item/item',
+            success: (result) => {},
+            fail: () => {},
+            complete: () => {}
+        });
+    },
+    clickDel() {
 
     }
 })

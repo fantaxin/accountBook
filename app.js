@@ -1,6 +1,6 @@
 // app.js
 wx.cloud.init({
-  env:"fantasy-8gy3bgkr80ffde7e"
+  env: "fantasy-8gy3bgkr80ffde7e"
 })
 App({
   onLaunch: function () {
@@ -39,7 +39,121 @@ App({
     });
   },
 
+  /**
+   *保留n位小数
+   * @param {number} value 数字
+   * @param {number} n 保留的小数位数
+   * @returns {string} 小数点后有n位数字的字符串
+   */
+  numFixed: function (value, n) {
+    return value.toFixed(n);
+  },
 
+  /**
+   * 将数字型的type转换成string
+   * @param {number} type
+   * @returns {string}
+   * type的值分别对应餐饮、购物、日用、交通、零食、娱乐、衣服、其它
+          工资、理财、借款、其它
+   */
+  getType: function (type) {
+    if (type == null) {
+      return '其它';
+    }
+    switch (type) {
+      case 1:
+        return '餐饮';
+      case 2:
+        return '购物';
+      case 3:
+        return '日用';
+      case 4:
+        return '交通';
+      case 5:
+        return '零食';
+      case 6:
+        return '娱乐';
+      case 7:
+        return '衣服';
+      case 8:
+        return '其它支出';
+      case 9:
+        return '工资';
+      case 10:
+        return '理财';
+      case 11:
+        return '借款';
+      default:
+        return '其它收入';
+    }
+  },
+
+  /**
+   * 判断是否为收入项目
+   * @param {number} type 
+   * @returns {boolean}
+   */
+  isIncome: function (type) {
+    if (type > 8)
+      return true;
+    else
+      return false;
+  },
+
+  /**
+   * 将字符串'2021-01-01 12:01'分割为['2021-01-01','12:01']
+   * @param {string} date 
+   * @returns {[]}
+   */
+  splitDate: function (date) {
+    if (date == null)
+      return ['--', '--'];
+    else
+      return date.split(" ");
+  },
+
+  /**
+   * 根据type返回相应的图片地址
+   * @param {number} type 
+   * @returns {string} 图片src
+   */
+  getImageSrc: function (type) {
+    // var img = new Image();
+    // img.src = '../images/'+type+'.png';
+    // return img;
+    if (type == null)
+      return '../../images/' + 12 + '.png';
+    else
+      return '../../images/' + type + '.png';
+  },
+
+  /**
+   * 获取当前日期并以'yy-mm-dd'格式返回
+   * @returns {string}
+   */
+  getNowDate: function () {
+    var d = getDate();
+    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+  },
+
+  /**
+   * 获取当前时间并以'hh:mm:ss'格式返回
+   * @returns {string}
+   */
+  getNowTime: function () {
+    var d = getDate();
+    return [d.getHours(), d.getMinutes(), d.getSeconds()].join(':')
+  },
+
+  /**
+   * 在给定的时间后加上当前的秒
+   * @param {string} time 'hh:mm'
+   * @returns {string} 'hh:mm:ss'
+   */
+  addSec: function (time) {
+    var d = getDate();
+    return toString(time) + ':' + d.getSeconds();
+  },
 
   editTabbar: function () {
     let tabbar = this.globalData.tabBar;
@@ -90,7 +204,7 @@ App({
           "pagePath": "/pages/about/about",
           "iconPath": "icon/about1.png",
           "selectedIconPath": "icon/about2.png",
-          "text": "关于"
+          "text": "便利贴"
         },
       ]
     },

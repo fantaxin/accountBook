@@ -155,7 +155,7 @@
     padding-left: 0rpx;
     color: black;
     font-family: "Fira Mono";
-
+    font-size: 34rpx;
 }
 
 .item-time {
@@ -170,6 +170,7 @@
     padding-left: 0rpx;
     color: black;
     font-family: "Fira Mono";
+    font-size: 26rpx;
 }
 
 .item-money {

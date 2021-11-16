@@ -28,7 +28,12 @@
                     <view class="item-time">{{item.date}}</view>
                     <!-- <view style="display: none">{{item.isExpand}}</view> -->
                     <view class="item-note">{{item.note}}</view>
-                    <view class="item-money">{{func.numFixed(item.money,2)}}</view>
+                    <view wx:if="{{!func.isIncome(item.type)}}" class="item-money" style="color: red;">
+                        -{{func.numFixed(item.money,2)}}
+                    </view>
+                    <view wx:else class="item-money" style="color: #00CE84;">
+                        +{{func.numFixed(item.money,2)}}
+                    </view>
                 </view>
             </view>
         </block>

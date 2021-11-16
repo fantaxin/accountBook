@@ -17,29 +17,29 @@ newdata: true -->
     <view class="item-total">
         <!-- 图片+文字 -->
         <view class="img-type">
-            <image src='{{func.getImageSrc(item.type)}}' class="image" />
+            <image src='{{func.getImageSrc(message.type)}}' class="image" />
             <!-- {{func.getImageSrc(item.type)}} -->
-            <text class="type" style="font-size: larger">{{func.getType(item.type)}}</text>
+            <text class="type" style="font-size: larger">{{func.getType(message.type)}}</text>
         </view>
         <view class="money info">
-            <view wx:if="{{!func.isIncome(item.type)}}" style="font-size: x-large">
-                -{{func.numFixed(item.money,2)}}元
+            <view wx:if="{{!func.isIncome(message.type)}}" style="font-size: x-large">
+                -{{func.numFixed(message.money,2)}}元
             </view>
-            <view wx:else style="font-size: x-large">+{{func.numFixed(item.money,2)}}元</view>
+            <view wx:else style="font-size: x-large">+{{func.numFixed(message.money,2)}}元</view>
         </view>
         <view class="data info">
-            <text space="nbsp">日期 :  {{func.splitDate(item.date)[0]}}</text>
+            <text space="nbsp">日期 :  {{func.splitDate(message.date)[0]}}</text>
         </view>
         <view class="time info">
-            <text space="nbsp">时间 :  {{func.splitDate(item.date)[1]}}</text>
+            <text space="nbsp">时间 :  {{func.splitDate(message.date)[1]}}</text>
         </view>
         <view class="note info">
-            <text space="nbsp">备注 :  {{item.note}}</text>
+            <text space="nbsp">备注 :  {{message.note}}</text>
         </view>
     </view>
     <!-- 编辑+删除 -->
     <view class="btn">
-        <view class="edit-btn">
+        <view class="edit-btn" bindtap="clickEdit">
             <text class="edit">编辑</text>
         </view>
         <view class="del-btn">

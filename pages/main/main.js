@@ -111,7 +111,7 @@ Page({
                 newdata: false
             }
         ],
-        result:[
+        result: [
 
         ],
     },
@@ -149,18 +149,20 @@ Page({
                 canIUseGetUserProfile: true
             })
         }
-        var self=this
+        var self = this
         //初始化
         wx.cloud.init()
         //调用云函数
-        wx.cloud.callFunction({ 
-            name:'add',
-            success:function(res){
+        wx.cloud.callFunction({
+            name: 'show',
+            success: function (res) {
                 self.setData({
-                    result:res.result.data
+                    result: res.result.data
                 })
             }
         })
+        var date = '2021-09-02 11:30:25'
+        console.log(new Date(Date.parse(date.replace(/-/g, "/"))))
     },
     getUserProfile(e) {
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
