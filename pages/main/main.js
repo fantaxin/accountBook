@@ -5,7 +5,7 @@ const app = getApp()
 Page({
     data: {
         tabbar: {},
-        expand: 0,
+        expand: 9.5,
         income: 0,
         budget: 0,
         itemtime: '0',
@@ -16,101 +16,14 @@ Page({
         canIUseGetUserProfile: false,
         canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
         array: [{
-                _id: 1,
-                date: '2021.11.10 12:35',
-                isIncome: false,
-                type: 1,
-                money: 9.5,
-                note: '肯德基',
-                newdata: true
-            },
-            {
-                _id: 2,
-                date: '2021.11.9 09:46',
-                isIncome: false,
-                type: 2,
-                money: 5,
-                note: '--',
-                newdata: false
-            },
-            {
-                _id: 1,
-                date: '2021.11.10 12:35',
-                isIncome: false,
-                type: 1,
-                money: 9.5,
-                note: '肯德基',
-                newdata: true
-            }, {
-                _id: 2,
-                date: '2021.11.9 09:46',
-                isIncome: false,
-                type: 2,
-                money: 5,
-                note: '--',
-                newdata: false
-            },
-            {
-                _id: 1,
-                date: '2021.11.10 12:35',
-                isIncome: false,
-                type: 1,
-                money: 9.5,
-                note: '肯德基',
-                newdata: true
-            }, {
-                _id: 2,
-                date: '2021.11.9 09:46',
-                isIncome: false,
-                type: 2,
-                money: 5,
-                note: '--',
-                newdata: false
-            },
-            {
-                _id: 1,
-                date: '2021.11.10 12:35',
-                isIncome: false,
-                type: 1,
-                money: 9.5,
-                note: '肯德基',
-                newdata: true
-            }, {
-                _id: 2,
-                date: '2021.11.9 09:46',
-                isIncome: false,
-                type: 2,
-                money: 5,
-                note: '--',
-                newdata: false
-            },
-            {
-                _id: 1,
-                date: '2021.11.10 12:35',
-                isIncome: false,
-                type: 1,
-                money: 9.5,
-                note: '肯德基',
-                newdata: true
-            }, {
-                _id: 2,
-                date: '2021.11.9 09:46',
-                isIncome: false,
-                type: 2,
-                money: 5,
-                note: '--',
-                newdata: false
-            },
-            {
-                _id: 3,
-                date: '2021.11.8 09:46',
-                isIncome: true,
-                type: 9,
-                money: 3000,
-                note: '--',
-                newdata: false
-            }
-        ],
+            _id: '1',
+            date: '2021.11.10 12:35',
+            isIncome: false,
+            type: 1,
+            money: 9.5,
+            note: '肯德基',
+            newdata: true
+        }],
         result: [
 
         ],

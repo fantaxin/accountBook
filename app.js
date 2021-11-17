@@ -50,6 +50,15 @@ App({
   },
 
   /**
+   * 
+   * @param {number} value 
+   * @returns 
+   */
+  format: function (value) {
+    return ('00' + value).slice(-2);
+  },
+
+  /**
    * 将数字型的type转换成string
    * @param {number} type
    * @returns {string}
@@ -132,8 +141,8 @@ App({
    * @returns {string}
    */
   getNowDate: function () {
-    var d = getDate();
-    return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+    var d = new Date();
+    return [d.getFullYear(), this.format(d.getMonth() + 1), this.format(d.getDate())].join('-')
   },
 
   /**
@@ -141,8 +150,8 @@ App({
    * @returns {string}
    */
   getNowTime: function () {
-    var d = getDate();
-    return [d.getHours(), d.getMinutes(), d.getSeconds()].join(':')
+    var d = new Date();
+    return [this.format(d.getHours()), this.format(d.getMinutes()), this.format(d.getSeconds())].join(':')
   },
 
   /**
@@ -151,8 +160,18 @@ App({
    * @returns {string} 'hh:mm:ss'
    */
   addSec: function (time) {
-    var d = getDate();
-    return toString(time) + ':' + d.getSeconds();
+    var d = new Date();
+    return time + ':' + d.getSeconds();
+  },
+
+  /**
+   * 将日期和时间合并为一个字符串
+   * @param {string} date 'yy-mm-dd'
+   * @param {string}time 'hh:mm:ss'
+   * @returns {string} 'yy-mm-dd hh:mm:ss'
+   */
+  toDate: function (date, time) {
+    return date + ' ' + time;
   },
 
   editTabbar: function () {

@@ -6,43 +6,33 @@
     <view class="input">
         <!-- 项目 -->
         <view class="image-type" bindtap="toggleDialog">
-            <image src='{{func.getImageSrc(type)}}' class="image" />
-            <text class="image-type-text">{{func.getType(type)}}</text>
+            <image src='{{func.getImageSrc(message.type)}}' class="image" />
+            <text class="image-type-text">{{func.getType(message.type)}}</text>
         </view>
         <!-- 金额 -->
         <view class="input-item money-item">
             <text class="text money-item">金额：</text>
-            <input class="myinput money-item" type="digit" value="{{money}}" />
+            <input class="myinput money-item" type="digit" model:value="{{money}}" bindinput="inputMoneyCheck" bindblur="inputMoneyBlur" />
         </view>
         <!-- 日期 -->
         <view class="input-item date-item">
             <text class="text date-item">日期：</text>
             <picker class="myinput date-item" mode="date" value="{{date}}" start="2000-01-01" end="2099-12-31" bindchange="bindDateChange">
-                <view style="postion:absolute;height:75rpx;padding-top:10rpx;" wx:if='{{!dateChange}}'>
-                    {{func.getNowDate()}}
-                </view>
-                <view style="postion:absolute;height:75rpx;padding-top:10rpx;" wx:else>
-                    {{date}}
-                </view>
+                <view style="position:absolute;height:75rpx;padding-top:10rpx;">{{date}}</view>
             </picker>
         </view>
         <!-- 时间 -->
         <view class="input-item time-item">
             <text class="text date-item">时间：</text>
             <picker class="myinput date-item" mode="time" value="{{time}}" start="00:00:00" end="23:59:59" bindchange="bindTimeChange">
-                <view style="postion:absolute;height:75rpx;padding-top:10rpx;" wx:if='{{!timeChange}}'>
-                    {{func.getNowTime()}}
-                </view>
-                <view style="postion:absolute;height:75rpx;padding-top:10rpx;" wx:else>
-                    {{time}}
-                </view>
+                <view style="position:absolute;height:75rpx;padding-top:10rpx;">{{time}}</view>
             </picker>
         </view>
         <!-- 备注 -->
         <!-- <input type="text" value="1" style="border-style: solid;" /> -->
         <view class="input-item note-item">
             <text class="text money-item">备注：</text>
-            <input class="myinput money-item" type="text" value="{{note}}" />
+            <input class="myinput money-item" type="text" model:value="{{note}}" bindblur="inputNoteBlur" />
         </view>
         <view class="btn" bindtap="clickBtn">完成</view>
     </view>
@@ -54,7 +44,7 @@
             <!-- 支出grid -->
             <text class="title">支出</text>
             <view class="grid" style="box-shadow: 0px 1px 0px 0px whitesmoke;">
-                <view class="item" wx:for="{{[1,2,3,4,5,6,7,8]}}" data-index='{{item}}' bindtap="ChangeType">
+                <view class="item" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="unique" data-index='{{item}}' bindtap="ChangeType">
                     <image src='{{func.getImageSrc(item)}}' class="image" />
                     <text class="item-text">{{func.getType(item)}}</text>
                 </view>
@@ -62,7 +52,7 @@
             <!-- 收入grid -->
             <text class="title">收入</text>
             <view class="grid">
-                <view class="item" wx:for="{{[9,10,11,12]}}" data-index='{{item}}' bindtap="ChangeType">
+                <view class="item" wx:for="{{[9,10,11,12]}}" wx:key="unique" data-index='{{item}}' bindtap="ChangeType">
                     <image src='{{func.getImageSrc(item)}}' class="image" />
                     <text class="item-text">{{func.getType(item)}}</text>
                 </view>
