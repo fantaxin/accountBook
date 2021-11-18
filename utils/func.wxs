@@ -1,4 +1,8 @@
 var func = {
+
+}
+
+module.exports = {
     /**
      *保留n位小数
      * @param {number} value 数字
@@ -7,6 +11,15 @@ var func = {
      */
     numFixed: function (value, n) {
         return value.toFixed(n);
+    },
+
+    /**
+     * 
+     * @param {number} value 
+     * @returns 
+     */
+    format: function (value) {
+        return ('00' + value).slice(-2);
     },
 
     /**
@@ -93,7 +106,7 @@ var func = {
      */
     getNowDate: function () {
         var d = getDate();
-        return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+        return [d.getFullYear(), this.format(d.getMonth() + 1), this.format(d.getDate())].join('-')
     },
 
     /**
@@ -102,7 +115,7 @@ var func = {
      */
     getNowTime: function () {
         var d = getDate();
-        return [d.getHours(), d.getMinutes(), d.getSeconds()].join(':')
+        return [this.format(d.getHours()), this.format(d.getMinutes()), this.format(d.getSeconds())].join(':')
     },
 
     /**
@@ -112,58 +125,16 @@ var func = {
      */
     addSec: function (time) {
         var d = getDate();
-        return toString(time) + ':' + d.getSeconds();
+        return toString(time) + ':' + this.format(d.getSeconds());
     },
-}
 
-module.exports = {
     /**
-     *保留n位小数
-     * @param {number} value 数字
-     * @param {number} n 保留的小数位数
-     * @returns {string} 小数点后有n位数字的字符串
+     * 将日期和时间合并为一个字符串
+     * @param {string} date 'yy-mm-dd'
+     * @param {string}time 'hh:mm:ss'
+     * @returns {string} 'yy-mm-dd hh:mm:ss'
      */
-    numFixed: func.numFixed,
-    /**
-     * 将数字型的type转换成string
-     * @param {number} type
-     * @returns {string}
-     * type的值分别对应餐饮、购物、日用、交通、零食、娱乐、衣服、其它
-            工资、理财、借款、其它
-     */
-    getType: func.getType,
-    /**
-     * 判断是否为收入项目
-     * @param {number} type 
-     * @returns {boolean}
-     */
-    isIncome: func.isIncome,
-    /**
-     * 将字符串'2021-01-01 12:01'分割为['2021-01-01','12:01']
-     * @param {string} date 
-     * @returns {[]}
-     */
-    splitDate: func.splitDate,
-    /**
-     * 根据type返回相应的图片地址
-     * @param {number} type 
-     * @returns {string} 图片src
-     */
-    getImageSrc: func.getImageSrc,
-    /**
-     * 获取当前日期并以'yy-mm-dd'格式返回
-     * @returns {string}
-     */
-    getNowDate: func.getNowDate,
-    /**
-     * 获取当前时间并以'hh:mm:ss'格式返回
-     * @returns {string}
-     */
-    getNowTime: func.getNowTime,
-    /**
-     * 在给定的时间后加上当前的秒
-     * @param {string} time 'hh:mm'
-     * @returns {string} 'hh:mm:ss'
-     */
-    addSce: func.addSec,
+    toDate: function (date, time) {
+        return date + ' ' + time
+    }
 }

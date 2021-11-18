@@ -20,7 +20,7 @@
         <!-- <button bindtap="clickTotal" class="statistics" style="width: fit-content">查看图表分析</button> -->
     </view>
     <view class="data">
-        <block wx:for="{{array}}">
+        <block wx:for="{{array}}" wx:key="_id">
             <view class="item" data-index='{{item}}' bindtap="clickitem">
                 <image src='{{func.getImageSrc(item.type)}}' class="item-image" />
                 <view class="item-text">
@@ -37,7 +37,7 @@
                 </view>
             </view>
         </block>
-        <view class="item">到底了</view>
+        <view class="item" style="text-align: center;">没有更多记录了😅</view>
     </view>
     <!-- <view>
         时间选择

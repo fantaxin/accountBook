@@ -42,7 +42,7 @@ newdata: true -->
         <view class="edit-btn" bindtap="clickEdit">
             <text class="edit">编辑</text>
         </view>
-        <view class="del-btn">
+        <view class="del-btn" bindtap="clickDel">
             <text class="del">删除</text>
         </view>
     </view>

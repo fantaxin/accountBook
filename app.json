@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/main/main",
+    "pages/main/main", 
     "pages/add/add",  
     "pages/statistics/statistics",
     "pages/setting/setting",
@@ -42,7 +42,7 @@
     },
     {
       "pagePath": "pages/about/about",      
-      "text": "关于",
+      "text": "便利贴",
       "iconPath":"images/about1.png",
       "selectedIconPath":"images/about2.png"
     }  
