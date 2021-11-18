@@ -3,7 +3,7 @@ const app = getApp()
 Page({
     data: {
         message: {
-            _id: '_',
+            _id: '',
             date: '',
             isIncome: false,
             type: 8,
@@ -172,6 +172,7 @@ Page({
              * TODO：
              * 在数据库中添加该条记录，并返回一个新的_id
              */
+            app.Add(this.data.message, '');
             this.setData({
                 ['message._id']: '_' + Math.random(), //临时用的id
             })

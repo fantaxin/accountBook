@@ -11,7 +11,11 @@ App({
     // 获取设备信息
     this.getSystemInfo();
 
+    //获取用户openid
+    //查询user表，如果没有该用户，在user表中添加该用户，并添加一张以该用户openid命名的表
 
+
+    //
     // // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -23,6 +27,24 @@ App({
     //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
     //   }
     // })
+  },
+
+
+  Add: function (message, openId) {
+    message._id = '';
+    //初始化
+    wx.cloud.init()
+    //调用云函数
+    wx.cloud.callFunction({
+      name: 'Add',
+      data: message,
+      success: function (res) {
+        self.setData({
+          // result: res.result.data
+        })
+        //return _id
+      }
+    })
   },
 
   onShow: function () {
@@ -187,6 +209,10 @@ App({
     _this.setData({
       tabbar: tabbar
     });
+  },
+
+  getwindowWidth: function () {
+    return wx.getSystemInfoSync().windowWidth;
   },
 
   globalData: {
