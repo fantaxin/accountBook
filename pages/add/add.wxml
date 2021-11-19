@@ -1,4 +1,62 @@
+<wxs module="func" src="../../utils/func.wxs"></wxs>
 <view class="container">
-    <!-- 餐饮、购物、日用、交通、零食、娱乐、衣服、旅行、学习 -->
-    <!-- 工资、理财 -->
+    <!-- 餐饮、购物、日用、交通、零食、娱乐、衣服、其它
+         工资、理财、借款、其它 -->
+    <!-- <view class="title" style="color:#000000">记一笔</view> -->
+    <view class="input">
+        <!-- 项目 -->
+        <view class="image-type" bindtap="toggleDialog">
+            <image src='{{func.getImageSrc(message.type)}}' class="image" />
+            <text class="image-type-text">{{func.getType(message.type)}}</text>
+        </view>
+        <!-- 金额 -->
+        <view class="input-item money-item">
+            <text class="text money-item">金额：</text>
+            <input class="myinput money-item" type="digit" model:value="{{money}}" bindinput="inputMoneyCheck" bindblur="inputMoneyBlur" />
+        </view>
+        <!-- 日期 -->
+        <view class="input-item date-item">
+            <text class="text date-item">日期：</text>
+            <picker class="myinput date-item" mode="date" value="{{date}}" start="2000-01-01" end="2099-12-31" bindchange="bindDateChange">
+                <view style="position:absolute;height:75rpx;padding-top:10rpx;">{{date}}</view>
+            </picker>
+        </view>
+        <!-- 时间 -->
+        <view class="input-item time-item">
+            <text class="text date-item">时间：</text>
+            <picker class="myinput date-item" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+                <view style="position:absolute;height:75rpx;padding-top:10rpx;">{{time}}</view>
+            </picker>
+        </view>
+        <!-- 备注 -->
+        <!-- <input type="text" value="1" style="border-style: solid;" /> -->
+        <view class="input-item note-item">
+            <text class="text money-item">备注：</text>
+            <input class="myinput money-item" type="text" model:value="{{note}}" bindblur="inputNoteBlur" />
+        </view>
+        <view class="btn" bindtap="clickBtn">完成</view>
+    </view>
+    <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+        <!-- <view class="zan-dialog zan-dialog--show"> -->
+        <!-- 如果想点击弹窗外不隐藏，取消bindtap点击事件即可 -->
+        <view class="zan-dialog__mask" bindtap="toggleDialog" />
+        <view class="zan-dialog__container">
+            <!-- 支出grid -->
+            <text class="title">支出</text>
+            <view class="grid" style="box-shadow: 0px 1px 0px 0px whitesmoke;">
+                <view class="item" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="unique" data-index='{{item}}' bindtap="ChangeType">
+                    <image src='{{func.getImageSrc(item)}}' class="image" />
+                    <text class="item-text">{{func.getType(item)}}</text>
+                </view>
+            </view>
+            <!-- 收入grid -->
+            <text class="title">收入</text>
+            <view class="grid">
+                <view class="item" wx:for="{{[9,10,11,12]}}" wx:key="unique" data-index='{{item}}' bindtap="ChangeType">
+                    <image src='{{func.getImageSrc(item)}}' class="image" />
+                    <text class="item-text">{{func.getType(item)}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>

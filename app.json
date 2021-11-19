@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/main/main", 
+    "pages/add/add",  
     "pages/statistics/statistics",
-    "pages/add/add",
     "pages/setting/setting",
     "pages/about/about",
     "components/tabbarComponent/tabbar",
@@ -10,11 +10,12 @@
     "pages/logs/logs",
     "pages/item/item"
   ],
+  "cloud": true,
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "无心记账",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "color": "#707070",
@@ -29,7 +30,7 @@
     {
       "pagePath": "pages/statistics/statistics",      
       "text": "统计",
-      "iconPath":"images/statistics1.png",
+      "iconPath":"images/statistics1.png", 
       "selectedIconPath":"images/statistics2.png"
     },
     {
@@ -40,7 +41,7 @@
     },
     {
       "pagePath": "pages/about/about",      
-      "text": "关于",
+      "text": "便利贴",
       "iconPath":"images/about1.png",
       "selectedIconPath":"images/about2.png"
     }  

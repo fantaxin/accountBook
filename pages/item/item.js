@@ -2,28 +2,71 @@
 const app = getApp()
 Page({
     data: {
-        item: {}
+        message: {
+            _id: '_',
+            date: '',
+            isIncome: false,
+            type: 8,
+            money: 0,
+            note: '',
+            newdata: true,
+        },
+        app: app
     },
     onLoad(option) {
-        // this.setData({item: JSON.parse(option.data)})
-        const eventChannel = this.getOpenerEventChannel()
-        eventChannel.on('acceptDataFrommain', function (data) {
-            this.setData({
-                item: JSON.parse(option.data)
-            })
+        app.setBarColor();
+        this.setData({
+            message: JSON.parse(option.data)
         })
+    },
+    clickEdit() {
+        wx.navigateTo({
+            url: '../add/add?data=' + JSON.stringify(this.data.message) + '&fromEdit=' + true,
+            // url: '../item/item',
+            success: (result) => {},
+            fail: () => {},
+            complete: () => {}
+        });
+    },
+    clickDel() {
+        var income = 0;
+        var expand = 0;
+        if (app.isIncome(this.data.message.type)) {
+            income -= this.data.message.money;
+        } else {
+            expand -= this.data.message.money;
+        }
 
-
-        // const eventChannel = this.getOpenerEventChannel()
-        // eventChannel.emit('acceptDataFromOpenedPage', {
-        //     data: 'test'
-        // });
-        // eventChannel.emit('someEvent', {
-        //     data: 'test'
-        // });
-        // // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-        // eventChannel.on('acceptDataFromOpenerPage', function (data) {
-        //     console.log(data)
-        // })
+        console.log('弹出模态框')
+        let pages = getCurrentPages(); // 当前页，
+        let prevPage = pages[pages.length - 2]; // 上一页
+        var that = this;
+        wx.showModal({
+            content: '确认要删除该项吗？',
+            confirmColor: '#FF0000',
+            success: function (res) {
+                if (res.confirm) {
+                    /**
+                     * 此处添加云数据库删除函数
+                     */
+                    prevPage.data.array.forEach((item, index) => {
+                        if (item._id == that.data.message._id) {
+                            prevPage.data.array.splice(index, 1);
+                            prevPage.setData({
+                                array: prevPage.data.array,
+                                income: prevPage.data.income + income,
+                                expand: prevPage.data.expand + expand,
+                            })
+                        }
+                    })
+                    wx.navigateBack({
+                        delta: pages.length - 2,
+                    });
+                    return;
+                } else {
+                    return;
+                }
+            }
+        })
     }
 })

@@ -1,13 +1,7 @@
 <!-- main.wxml -->
-<wxs module="func">
-    var itemtime = '000';
-    module.exports = {
-        numFixed: function (value,n) {
-          return value.toFixed(n);
-        }
-    }
-</wxs>
+<wxs module="func" src="../../utils/func.wxs"></wxs>
 <view class="container">
+    <view class="blank"></view>
     <view class="total" bindtap="clickTotal">
         <view>
             <button class="BYZC" style="width: fit-content">本月支出</button>
@@ -20,24 +14,30 @@
             <text space="nbsp">收入 {{func.numFixed(income,2)}}</text>
         </view>
         <view class="SYYS">
-            <text>剩余预算</text>
+            <text>剩余预算\n</text>
             <text>{{func.numFixed(budget+income-expand,2)}}</text>
         </view>
         <!-- <button bindtap="clickTotal" class="statistics" style="width: fit-content">查看图表分析</button> -->
     </view>
     <view class="data">
-        <block wx:for="{{array}}">
+        <block wx:for="{{array}}" wx:key="_id">
             <view class="item" data-index='{{item}}' bindtap="clickitem">
-                <image src="../../images/1.png" class="item-image" />
-                <view class="item-type">{{item.type}}</view>
-                <view class="item-time">{{item.time}}</view>
-                <view style="display: none">{{item.isExpand}}</view>
-                <view class="item-note">{{item.note}}</view>
-                <view class="item-money">{{item.money}}</view>
+                <image src='{{func.getImageSrc(item.type)}}' class="item-image" />
+                <view class="item-text">
+                    <view class="item-type">{{func.getType(item.type)}}</view>
+                    <view class="item-time">{{item.date}}</view>
+                    <!-- <view style="display: none">{{item.isExpand}}</view> -->
+                    <view class="item-note">{{item.note}}</view>
+                    <view wx:if="{{!func.isIncome(item.type)}}" class="item-money" style="color: red;">
+                        -{{func.numFixed(item.money,2)}}
+                    </view>
+                    <view wx:else class="item-money" style="color: #00CE84;">
+                        +{{func.numFixed(item.money,2)}}
+                    </view>
+                </view>
             </view>
         </block>
-        <view class="item">到底了</view>
-        <view class="item"></view>
+        <view class="item" style="text-align: center;">没有更多记录了😅</view>
     </view>
     <!-- <view>
         时间选择

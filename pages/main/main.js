@@ -1,10 +1,11 @@
 // main.js
 // 获取应用实例
 const app = getApp()
+// const db = wx.cloud.database()
 Page({
     data: {
         tabbar: {},
-        expand: 0,
+        expand: 9.5,
         income: 0,
         budget: 0,
         itemtime: '0',
@@ -15,70 +16,17 @@ Page({
         canIUseGetUserProfile: false,
         canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
         array: [{
-                isExpand: false,
-                type: '餐饮',
-                money: 9.5,
-                time: '2021.11.10',
-                note: '肯德基',
-                newdata: true
-            },
-            {
-                isExpand: false,
-                type: '交通',
-                money: 5,
-                time: '2021.11.9',
-                note: '',
-                newdata: false
-            },
-            {
-                isExpand: true,
-                type: '工资',
-                money: 3000,
-                time: '2021.11.9',
-                note: '',
-                newdata: false
-            },
-            {
-                isExpand: false,
-                type: '餐饮',
-                money: 9.5,
-                time: '2021.11.9',
-                note: '麦当劳',
-                newdata: true
-            },
-            {
-                isExpand: false,
-                type: '餐饮',
-                money: 9.5,
-                time: '2021.11.8',
-                note: '肯德基',
-                newdata: false
-            },
-            {
-                isExpand: false,
-                type: '交通',
-                money: 5,
-                time: '2021.11.8',
-                note: '',
-                newdata: false
-            },
-            {
-                isExpand: true,
-                type: '工资',
-                money: 3000,
-                time: '2021.11.8',
-                note: '',
-                newdata: false
-            },
-            {
-                isExpand: false,
-                type: '餐饮',
-                money: 9.5,
-                time: '2021.11.8',
-                note: '麦当劳',
-                newdata: true
-            }
-        ]
+            _id: '1',
+            date: '2021.11.10 12:35',
+            isIncome: false,
+            type: 1,
+            money: 9.5,
+            note: '肯德基',
+            newdata: true
+        }],
+        result: [
+
+        ],
     },
     // 事件处理函数
     clickTotal() {
@@ -101,7 +49,7 @@ Page({
             success: (result) => {
                 // result.eventChannel.emit('acceptDataFrommain', {
                 //     data: JSON.stringify(e.currentTarget.dataset['index'])
-                // })
+                // }) 
             },
             fail: () => {},
             complete: () => {}
@@ -114,6 +62,20 @@ Page({
                 canIUseGetUserProfile: true
             })
         }
+        var self = this
+        //初始化
+        wx.cloud.init()
+        //调用云函数
+        wx.cloud.callFunction({
+            name: 'show',
+            success: function (res) {
+                self.setData({
+                    result: res.result.data
+                })
+            }
+        })
+        var date = '2021-09-02 11:30:25'
+        console.log(new Date(Date.parse(date.replace(/-/g, "/"))))
     },
     getUserProfile(e) {
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
