@@ -8,6 +8,7 @@ App({
     // 隐藏系统tabbar
     wx.hideTabBar();
 
+    this.setBarColor();
     // 获取设备信息
     this.getSystemInfo();
 
@@ -31,20 +32,27 @@ App({
 
 
   Add: function (message, openId) {
-    message._id = '';
+    // message._id = '';
     //初始化
+    var id = {};
     wx.cloud.init()
     //调用云函数
     wx.cloud.callFunction({
       name: 'Add',
       data: message,
       success: function (res) {
-        self.setData({
-          // result: res.result.data
-        })
+        id = res.result;
         //return _id
       }
     })
+    return id;
+  },
+
+  setBarColor: function () {
+    wx.setNavigationBarColor({
+      backgroundColor: '#00CE84',
+      frontColor: '#ffffff'
+    });
   },
 
   onShow: function () {
@@ -183,7 +191,7 @@ App({
    */
   addSec: function (time) {
     var d = new Date();
-    return time + ':' + d.getSeconds();
+    return time + ':' + this.format(d.getSeconds());
   },
 
   /**
@@ -231,6 +239,7 @@ App({
           "pagePath": "/pages/statistics/statistics",
           "iconPath": "icon/statistics1.png",
           "selectedIconPath": "icon/statistics2.png",
+          "isStatistics": true,
           "text": "统计"
         },
         {

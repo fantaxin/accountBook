@@ -21,6 +21,7 @@ Page({
         fromEdit: false,
     },
     onLoad: function (options) {
+        app.setBarColor();
         //从item界面跳转到本界面所传递的参数
         try {
             this.setData({
@@ -102,12 +103,12 @@ Page({
     toggleDialog() {
         if (this.data.showDialog) {
             wx.setNavigationBarColor({
-                backgroundColor: '#ffffff',
-                frontColor: '#000000'
+                backgroundColor: '#00CE84',
+                frontColor: '#ffffff'
             })
         } else {
             wx.setNavigationBarColor({
-                backgroundColor: '#999999',
+                backgroundColor: '#017C4E',
                 frontColor: '#ffffff'
             })
         }
@@ -172,10 +173,11 @@ Page({
              * TODO：
              * 在数据库中添加该条记录，并返回一个新的_id
              */
-            app.Add(this.data.message, '');
-            this.setData({
-                ['message._id']: '_' + Math.random(), //临时用的id
-            })
+            var id = app.Add(this.data.message, '');
+            console.log(id)
+            // this.setData({
+            //     ['message._id']: id, //临时用的id
+            // })
             prevPage.data.array.unshift(this.data.message);
             prevPage.setData({
                 array: prevPage.data.array,
@@ -184,7 +186,7 @@ Page({
             });
         }
         wx.navigateBack({
-            delta: pages.length - 2,
+            // delta: pages.length - 2,
         });
     }
 })

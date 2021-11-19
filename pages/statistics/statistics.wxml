@@ -1,5 +1,23 @@
-<view class="container">
-    statistics
+<wxs module="func" src="../../utils/func.wxs"></wxs>
+<view class="page">
+    <view class="total">
+        <text class="line" space="nbsp">—</text>
+        <text class="title" space="nbsp">总支出</text>
+        <view class="money">{{func.numFixed(money,2)}}元</view>
+    </view>
+    <view class="columnData">
+        <text class="line" space="nbsp">—</text>
+        <text class="title">支出走势</text>
+        <view>
+            <canvas class="canvas" canvas-id="columnCanvas"></canvas>
+        </view>
+    </view>
+    <view class="ringData">
+        <text class="line" space="nbsp">—</text>
+        <text class="title">支出占比</text>
+        <view>
+            <canvas class="canvas2" canvas-id="canvas" style="width:{{canvasW}}px;height:{{canvasH}}px;margin:auto;"></canvas>
+        </view>
+    </view>
     <mytabbar tabbar="{{tabbar}}"></mytabbar>
-    <!-- <mytabbar></mytabbar> -->
 </view>
