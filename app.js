@@ -211,12 +211,20 @@ App({
    * 获取用户的openid
    * @returns 
    */
-  getOpenId: function () {
-    var openid;
-
-    return openid;
+  async getOpenId() {
+    const res = await wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'getOpenId',
+    })
+    return res.result.openid
   },
-
+  // getOpenId: function () {
+  //   wx.cloud.callFunction({
+  //     name:'getOpenId',
+  //   }).then(res=>{
+  //   return res.result.openid;
+  //   })
+  // },
   /**
    * 如果user表中没有该openid，则将其添加进去，并创建一个新的集合（表）
    * @param {string} openid 
