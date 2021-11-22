@@ -14,6 +14,7 @@ Page({
         app: app
     },
     onLoad(option) {
+        app.setBarColor();
         this.setData({
             message: JSON.parse(option.data)
         })

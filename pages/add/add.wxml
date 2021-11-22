@@ -24,7 +24,7 @@
         <!-- 时间 -->
         <view class="input-item time-item">
             <text class="text date-item">时间：</text>
-            <picker class="myinput date-item" mode="time" value="{{time}}" start="00:00:00" end="23:59:59" bindchange="bindTimeChange">
+            <picker class="myinput date-item" mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
                 <view style="position:absolute;height:75rpx;padding-top:10rpx;">{{time}}</view>
             </picker>
         </view>

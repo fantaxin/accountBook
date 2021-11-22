@@ -21,6 +21,7 @@ Component({
             "pagePath": "/pages/statistics/statistics",
             "iconPath": "icon/statistics1.png",
             "selectedIconPath": "icon/statistics2.png",
+            "isStatistics": true,
             "text": "统计"
           },
           {
@@ -57,6 +58,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    clickItem() {
+      console.log("点击成功");
+      wx.switchTab({
+        url: '/pages/statistics/statistics',
+        success() {
+          let page = getCurrentPages().pop();
+          if (page == undefined || page == null) return;
+          page.onReady();
+          console.log("跳转成功")
+        }
+      });
+    }
 
-  }
+  },
+
 })

@@ -5,6 +5,7 @@ Page({
         tabbar: {},
     },
     onLoad: function (options) {
+        app.setBarColor();
         app.editTabbar();
     },
 })

@@ -8,10 +8,15 @@ App({
     // 隐藏系统tabbar
     wx.hideTabBar();
 
+    this.setBarColor();
     // 获取设备信息
     this.getSystemInfo();
 
+    //获取用户openid
+    //查询user表，如果没有该用户，在user表中添加该用户，并添加一张以该用户openid命名的表
 
+
+    //
     // // 展示本地存储能力
     // const logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -25,6 +30,13 @@ App({
     // })
   },
 
+  setBarColor: function () {
+    wx.setNavigationBarColor({
+      backgroundColor: '#00CE84',
+      frontColor: '#ffffff'
+    });
+  },
+
   onShow: function () {
     //隐藏系统tabbar
     wx.hideTabBar();
@@ -35,6 +47,7 @@ App({
     wx.getSystemInfo({
       success: function (res) {
         t.globalData.systemInfo = res;
+        console.log(res);
       }
     });
   },
@@ -161,7 +174,7 @@ App({
    */
   addSec: function (time) {
     var d = new Date();
-    return time + ':' + d.getSeconds();
+    return time + ':' + this.format(d.getSeconds());
   },
 
   /**
@@ -189,6 +202,134 @@ App({
     });
   },
 
+  getwindowWidth: function () {
+    return wx.getSystemInfoSync().windowWidth;
+  },
+
+
+  /**
+   * 获取用户的openid
+   * @returns 
+   */
+  getOpenId: function () {
+    var openid;
+
+    return openid;
+  },
+
+  /**
+   * 如果user表中没有该openid，则将其添加进去，并创建一个新的集合（表）
+   * @param {string} openid 
+   */
+  newUser: function (openid) {
+    try {
+      //添加openid
+      //创建新集合
+    } catch (error) {
+      //
+    }
+  },
+
+  Add: function (openid, message) {
+    // message._id = '';
+    //初始化
+    var id = '';
+    wx.cloud.init()
+    //调用云函数
+    wx.cloud.callFunction({
+      name: 'Add',
+      data: message,
+      success: function (res) {
+        id = res.result.id;
+        //return _id
+      }
+    })
+    return id;
+  },
+
+  /**
+   * 删除openid下id=id的数据
+   * @param {string} id 
+   * @param {string} openid 
+   */
+  Delete: function (openid, id) {
+    //return true;//成功返回true
+    return false; //失败返回false
+  },
+
+  /**
+   * 修改openid下数据id为message.id的数据
+   * @param {string} openid 
+   * @param {stirng} id 
+   * @param {[]} message 
+   */
+  Change: function (openid, message) {
+    return false;
+  },
+
+  /**
+   * 获取本月支出总额
+   * @returns 
+   */
+  SearchExpand: function (openid) {
+    // var d = new Date();
+    // var year = d.getFullYear();
+    // var month = d.getMonth();
+    var expand;
+    return expand;
+  },
+
+  /**
+   * 获取本月收入总额
+   * @returns 
+   */
+  SearchIncome: function (openid) {
+    // var d = new Date();
+    // var year = d.getFullYear();
+    // var month = d.getMonth();
+    var income;
+    return income;
+  },
+
+  /**
+   * 获取本月的所有收入+支出数据，并按时间排序
+   * @returns 
+   */
+  SearchByMonth: function (openid) {
+    // var d = new Date();
+    // var year = d.getFullYear();
+    // var month = d.getMonth();
+    var data = [];
+    return data;
+  },
+
+  /**
+   * 获取当月每天的支出总额，没有消费记录的记为0
+   * @returns {[]}
+   */
+  getcolumnData: function (openid) {
+    // var d = new Date();
+    // var year = d.getFullYear();
+    // var month = d.getMonth();
+    var daynum; //当月的天数
+
+    var data = [];
+    return data;
+  },
+
+  /**
+   * 获取当月各个消费类别的消费总额
+   *[{ value: '餐饮',ratio: 50},{},{}]
+   */
+  getringData: function (openid) {
+    // var d = new Date();
+    // var year = d.getFullYear();
+    // var month = d.getMonth();
+
+    var data = [];
+    return data;
+  },
+
   globalData: {
     userInfo: null,
     tabBar: {
@@ -205,6 +346,7 @@ App({
           "pagePath": "/pages/statistics/statistics",
           "iconPath": "icon/statistics1.png",
           "selectedIconPath": "icon/statistics2.png",
+          "isStatistics": true,
           "text": "统计"
         },
         {
