@@ -16,6 +16,7 @@ Page({
         note: '',
         date: '',
         time: '',
+        sec: '00',
         tabbar: {},
         showDialog: false,
         fromEdit: false,
@@ -36,16 +37,17 @@ Page({
             }
             this.setData({
                 date: app.splitDate(this.data.message.date)[0],
-                time: app.splitDate(this.data.message.date)[1],
+                time: app.delSec(app.splitDate(this.data.message.date)[1])[0],
+                sec: app.delSec(app.splitDate(this.data.message.date)[1])[1],
                 money: this.data.message.money,
                 oldMoney: old,
                 note: this.data.message.note,
             })
-        } catch (error) {
-            var d = new Date();
+        } catch (e) {
             this.setData({
                 date: app.getNowDate(),
-                time: app.getNowTime()
+                time: app.delSec(app.getNowTime())[0],
+                sec: app.delSec(app.getNowTime())[1],
             })
             this.setData({
                 ['message.date']: [this.data.date, this.data.time].join(' ')
@@ -65,7 +67,7 @@ Page({
     bindTimeChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
-            time: app.addSec(e.detail.value),
+            time: e.detail.value,
         });
         this.setData({
             ['message.date']: [this.data.date, this.data.time].join(' ')
@@ -123,6 +125,7 @@ Page({
         this.setData({
             ['message.money']: parseFloat(this.data.money),
             ['message.note']: this.data.note,
+            ['message.date']: [([this.data.date, this.data.time].join(' ')), this.data.sec].join(':')
         })
         var self = this
         let preprevPage = pages[pages.length - 3];
@@ -157,6 +160,7 @@ Page({
              * TODO：
              * 在数据库中更新该条记录
              */
+            app.Change(app.globalData.openid, this.data.message);
             prevPage.setData({
                 message: this.data.message,
             });
@@ -174,10 +178,9 @@ Page({
              * TODO：
              * 在数据库中添加该条记录，并返回一个新的_id
              */
-            console.log(this.data.message.date)
-            app.Add('',this.data.message).then(res=>{
+            app.Add(app.globalData.openid, this.data.message).then(res => {
                 this.setData({
-                    _id:res.result._id
+                    ['message._id']: res
                 })
             })
             prevPage.data.array.unshift(this.data.message);
@@ -187,9 +190,9 @@ Page({
                 expand: prevPage.data.expand - expand,
             });
         }
-        
+
         wx.navigateBack({
-             delta: pages.length - 2,
+            delta: pages.length - 2,
         });
     }
 })

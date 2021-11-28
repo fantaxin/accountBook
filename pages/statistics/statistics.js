@@ -68,8 +68,25 @@ Page({
         app.editTabbar();
     },
     onReady() {
-        this.drawPie('canvas', this.data.ringData);
-        this.drawColumn(this.data.columnData, this.data.categories);
+        var that = this;
+        var num = 0;
+        app.getringData(app.globalData.openid).then((ring) => {
+            app.getcolumnData(app.globalData.openid).then((col) => {
+                that.setData({
+                    ringData: ring,
+                    columnData: col,
+                })
+                this.drawPie('canvas', this.data.ringData);
+                this.drawColumn(this.data.columnData, this.data.categories);
+                this.data.columnData.forEach((item) => {
+                    num += item;
+                })
+                this.setData({
+                    money: num
+                })
+            })
+        })
+
     },
 
     // 环形饼图

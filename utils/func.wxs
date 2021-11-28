@@ -127,7 +127,15 @@ module.exports = {
         var d = getDate();
         return toString(time) + ':' + this.format(d.getSeconds());
     },
-
+    /**
+     * 删除给定时间的秒
+     * @param {string} time 'hh:mm:ss'
+     * @returns {string} 'hh:mm'
+     */
+    delSec: function (time) {
+        var temp = time.split(":");
+        return [temp[0] + ':' + temp[1], temp[2]];
+    },
     /**
      * 将日期和时间合并为一个字符串
      * @param {string} date 'yy-mm-dd'

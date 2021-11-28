@@ -31,7 +31,7 @@ newdata: true -->
             <text space="nbsp">日期 :  {{func.splitDate(message.date)[0]}}</text>
         </view>
         <view class="time info">
-            <text space="nbsp">时间 :  {{func.splitDate(message.date)[1]}}</text>
+            <text space="nbsp">时间 :  {{func.delSec(func.splitDate(message.date)[1])[0]}}</text>
         </view>
         <view class="note info">
             <text space="nbsp">备注 :  {{message.note}}</text>

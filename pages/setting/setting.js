@@ -8,6 +8,13 @@ Page({
         app.setBarColor();
         app.editTabbar();
     },
+    click: function () {
+        wx.showToast({
+            title: '敬请期待',
+            icon: 'none',
+            duration: 800
+        })
+    },
     //生命周期函数--监听页面初次渲染完成
     onReady: function () {},
     //生命周期函数--监听页面显示

@@ -20,14 +20,13 @@
         <!-- <button bindtap="clickTotal" class="statistics" style="width: fit-content">查看图表分析</button> -->
     </view>
     <view class="data">
-        <!-- <block wx:for="{{array}}" wx:key="_id"> -->
-        <block wx:for="{{result}}">
-<!-- >>>>>>> Stashed changes -->
+        <block wx:for="{{array}}" wx:key="_id">
+            <!-- <block wx:for="{{result}}"> -->
             <view class="item" data-index='{{item}}' bindtap="clickitem">
                 <image src='{{func.getImageSrc(item.type)}}' class="item-image" />
                 <view class="item-text">
                     <view class="item-type">{{func.getType(item.type)}}</view>
-                    <view class="item-time">{{item.date}}</view>
+                    <view class="item-time">{{func.delSec(item.date)[0]}}</view>
                     <!-- <view style="display: none">{{item.isExpand}}</view> -->
                     <view class="item-note">{{item.note}}</view>
                     <view wx:if="{{!func.isIncome(item.type)}}" class="item-money" style="color: red;">
@@ -41,9 +40,6 @@
         </block>
         <view class="item" style="text-align: center;">没有更多记录了😅</view>
     </view>
-    <!-- <view>
-        时间选择
-    </view> -->
     <!-- 底部导航栏 -->
     <mytabbar tabbar="{{tabbar}}"></mytabbar>
 </view>

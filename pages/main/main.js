@@ -5,7 +5,7 @@ const app = getApp()
 Page({
     data: {
         tabbar: {},
-        expand: 9.5,
+        expand: 0,
         income: 0,
         budget: 0,
         itemtime: '0',
@@ -15,41 +15,20 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         canIUseGetUserProfile: false,
         canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
-        array: [{
-            _id: '1',
-            date: '2021.11.10 12:35',
-            isIncome: false,
-            type: 1,
-            money: 9.5,
-            note: '肯德基',
-            newdata: true
-        }],
-        result: [
-        ],
+        array: [],
+        result: [],
     },
     // 事件处理函数
     clickTotal() {
         wx.switchTab({
             url: '../statistics/statistics'
         })
-        // wx.switchTab({
-        //     url: '/statistics',
-        //     success: (result) => {
-
-        //     },
-        //     fail: () => {},
-        //     complete: () => {}
-        // });
     },
     clickitem(e) {
         wx.navigateTo({
             url: '../item/item?data=' + JSON.stringify(e.currentTarget.dataset['index']),
             // url: '../item/item',
-            success: (result) => {
-                // result.eventChannel.emit('acceptDataFrommain', {
-                //     data: JSON.stringify(e.currentTarget.dataset['index'])
-                // }) 
-            },
+            success: (result) => {},
             fail: () => {},
             complete: () => {}
         });
@@ -61,25 +40,23 @@ Page({
                 canIUseGetUserProfile: true
             })
         }
-        var self = this
-        //初始化
-        wx.cloud.init()
-        //调用云函数
-        wx.cloud.callFunction({
-            name:'show',
-            success:function(res){
-                for(let i= 0;i<res.result.data.length;i++){
-                    var date = new Date(res.result.data[i].date)
-                    var create_date=date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds()
-                    res.result.data[i].date = create_date
-                }
-                self.setData({
-                result:res.result.data
-                })               
-            }
+        app.getOpenId().then(openid => {
+            app.SearchExpand(openid).then(res => {
+                this.setData({
+                    expand: res
+                })
+            })
+            app.SearchIncome(openid).then(res => {
+                this.setData({
+                    income: res
+                })
+            })
+            app.showMonthData(openid).then(res => {
+                this.setData({
+                    array: app.myArray(res)
+                })
+            })
         })
-        // var date = '2021-09-02 11:30:25'
-        // console.log(new Date(Date.parse(date.replace(/-/g, "/"))))
     },
     getUserProfile(e) {
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
