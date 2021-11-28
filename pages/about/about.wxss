@@ -1,0 +1,32 @@
+.title {
+    position: absolute;
+    display: block;
+    top: 25rpx;
+    left: 25rpx;
+}
+
+.title-text {
+    position: relative;
+    display: block;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 28rpx;
+}
+
+.text-title {
+    margin-top: 10rpx;
+    position: relative;
+    display: block;
+    font-size: medium;
+}
+
+.text-content {
+    margin-top: 5rpx;
+    position: relative;
+    display: block;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 28rpx;
+}
+
+.title.kaifazhe {
+    top: 320rpx;
+}

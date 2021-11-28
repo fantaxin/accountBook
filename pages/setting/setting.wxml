@@ -1,4 +1,14 @@
-<view class="container">
-    setting
-	<mytabbar tabbar="{{tabbar}}"></mytabbar>
+<view class="container" style="background-color:whitesmoke;height: 2000rpx;">
+    <view class="list">
+        <view class="item">
+            <text class="text">导出数据</text>
+        </view>
+        <view class="item">
+            <text class="text">意见反馈</text>
+        </view>
+        <view class="item">
+            <text class="text">评分</text>
+        </view>
+    </view>
+    <mytabbar tabbar="{{tabbar}}"></mytabbar>
 </view>

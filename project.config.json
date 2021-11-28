@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "description": "项目配置文件",
   "cloudfunctionRoot": "cloud/",
   "packOptions": {
@@ -35,6 +36,17 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
+=======
+    "description": "项目配置文件",
+    "cloudfunctionRoot": "cloud/",
+    "packOptions": {
+        "ignore": [
+            {
+                "type": "file",
+                "value": ".eslintrc.js"
+            }
+        ]
+>>>>>>> develop
     },
     "enableEngineNative": false,
     "useIsolateContext": true,

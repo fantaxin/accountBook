@@ -1,0 +1,29 @@
+.list {
+    position: absolute;
+    top:0rpx;
+    display:block;
+    height:auto;
+    margin-top: 10rpx;
+    padding-top: 0rpx;
+}
+
+.item {
+    position: relative;
+    display: block;
+    left: 0rpx;
+    margin-top:5rpx;
+    width: 750rpx;
+    height: 110rpx;
+    background-color: white;
+    border-radius: 0rpx;
+    border-style: none;
+    border-width: 3rpx;
+    border-color: #00CE84 ;
+}
+
+.text {
+    position: absolute;
+    margin-top: 27rpx;
+    margin-left: 20rpx;
+    font-size: large;
+}
