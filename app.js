@@ -1,10 +1,13 @@
+
 // app.js
 wx.cloud.init({
   env: "fantasy-8gy3bgkr80ffde7e"
 })
+
 App({
   onLaunch: function () {
 
+  
     // 隐藏系统tabbar
     wx.hideTabBar();
 
@@ -229,40 +232,54 @@ App({
    * 如果user表中没有该openid，则将其添加进去，并创建一个新的集合（表）
    * @param {string} openid 
    */
-  newUser: function (openid) {
+  async newUser(openid) {
     try {
-      //添加openid
-      //创建新集合
-    } catch (error) {
-      //
+        const db = wx.cloud.database()
+        //添加openid
+        let openId = openid
+        db.collection('user').add({
+        data:{
+          openid:openId
+        }
+        }).then(ress =>{    
+        //创建新集合  
+          wx.cloud.callFunction({
+            name:'CreateTable',
+            data:{
+              openid:openId
+            }
+          })        
+      })
+    }catch (error) {
+        console.error('创建失败！',error) 
     }
   },
 
-  Add: function (openid, message) {
-    // message._id = '';
+  async Add(openid, message) {
     //初始化
-    var id = '';
     wx.cloud.init()
     //调用云函数
-    wx.cloud.callFunction({
+    const res = await wx.cloud.callFunction({
       name: 'Add',
       data: message,
-      success: function (res) {
-        id = res.result.id;
-        //return _id
-      }
-    })
-    return id;
+      })
+    return res
   },
-
   /**
    * 删除openid下id=id的数据
    * @param {string} id 
    * @param {string} openid 
    */
-  Delete: function (openid, id) {
-    //return true;//成功返回true
-    return false; //失败返回false
+  async Delete(openid, id) {
+    const res = await wx.cloud.callFunction({
+      name:'delete',
+      data:{
+        openid:openid,
+        _id:id
+      }
+    })
+    var t = res.result.stats.removed
+    return t == 1 ? true:false 
   },
 
   /**
@@ -271,43 +288,88 @@ App({
    * @param {stirng} id 
    * @param {[]} message 
    */
-  Change: function (openid, message) {
-    return false;
+  async Change(openid, message) {
+    const res = await wx.cloud.callFunction({
+      name:'update',
+      data:{
+        openid:openid,
+        message:message
+      }
+    })
+    //console.log(res)
+    //return false;
   },
 
   /**
    * 获取本月支出总额
    * @returns 
    */
-  SearchExpand: function (openid) {
-    // var d = new Date();
-    // var year = d.getFullYear();
-    // var month = d.getMonth();
-    var expand;
-    return expand;
+  async SearchExpand(openid) {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var start_date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + 1 + ' '  + "00:00:00"
+    var dd = new Date(year,month,0)
+    var end_date = d.getFullYear() + '-' + (d.getMonth() + 1) 
+    + '-' + dd.getDate() + ' ' + "23:59:59"
+
+    const res = await wx.cloud.callFunction({
+      name:'SearchByMonth',
+      data:{
+        start_date:start_date,
+        end_date:end_date,
+      }
+    })
+    var Expand = res.result.list[0].Expand
+    return Expand
   },
 
   /**
    * 获取本月收入总额
    * @returns 
    */
-  SearchIncome: function (openid) {
-    // var d = new Date();
-    // var year = d.getFullYear();
-    // var month = d.getMonth();
-    var income;
-    return income;
+  async SearchIncome(openid) {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var start_date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + 1 + ' '  + "00:00:00"
+    var dd = new Date(year,month,0)
+    var end_date = d.getFullYear() + '-' + (d.getMonth() + 1) 
+    + '-' + dd.getDate() + ' ' + "23:59:59"
+
+    const res = await wx.cloud.callFunction({
+      name:'Income',
+      data:{
+        start_date:start_date,
+        end_date:end_date,
+      }
+    })
+    var Income = res.result.list[0].Income
+    return Income
   },
 
   /**
-   * 获取本月的所有收入+支出数据，并按时间排序
+   * 获取本月的所有收入 + 支出数据，并按时间排序
    * @returns 
    */
-  SearchByMonth: function (openid) {
-    // var d = new Date();
-    // var year = d.getFullYear();
-    // var month = d.getMonth();
+  async showMonthData(openid) {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var start_date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + 1 + ' '  + "00:00:00"
+    var dd = new Date(year,month,0)
+    var end_date = d.getFullYear() + '-' + (d.getMonth() + 1) 
+    + '-' + dd.getDate() + ' ' + "23:59:59"
+
+    const res = await wx.cloud.callFunction({
+      name:'showMonthData',
+      data:{
+        start_date:start_date,
+        end_date:end_date,
+      }
+    })
     var data = [];
+    data = res.result.data
     return data;
   },
 
@@ -315,13 +377,31 @@ App({
    * 获取当月每天的支出总额，没有消费记录的记为0
    * @returns {[]}
    */
-  getcolumnData: function (openid) {
-    // var d = new Date();
-    // var year = d.getFullYear();
-    // var month = d.getMonth();
-    var daynum; //当月的天数
+  async getcolumnData(openid) {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var dd = new Date(year,month,0)
+    var daynum = dd.getDate() //当月的天数
+    var start_date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + 1 + ' '  + "00:00:00"
+    var end_date = d.getFullYear() + '-' + (d.getMonth() + 1) 
+    + '-' + dd.getDate() + ' ' + "23:59:59"
 
-    var data = [];
+    var res = await wx.cloud.callFunction({
+      name:'SearchByDay',
+      data:{
+        start_date:start_date,
+        end_date:end_date,
+      }
+    })
+
+    var data = [daynum];
+    for(var i = 0;i < daynum;i++){
+      data[i] = 0
+    }
+    for(var k = 0;k < res.result.list.length;k++){
+      data[res.result.list[k]._id-1] = res.result.list[k].money
+    }
     return data;
   },
 
@@ -329,12 +409,39 @@ App({
    * 获取当月各个消费类别的消费总额
    *[{ value: '餐饮',ratio: 50},{},{}]
    */
-  getringData: function (openid) {
-    // var d = new Date();
-    // var year = d.getFullYear();
-    // var month = d.getMonth();
+  async getringData(openid) {
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var dd = new Date(year,month,0)
+    var start_date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + 1 + ' '  + "00:00:00"
+    var end_date = d.getFullYear() + '-' + (d.getMonth() + 1) 
+    + '-' + dd.getDate() + ' ' + "23:59:59"
 
-    var data = [];
+    const res = await wx.cloud.callFunction({
+      name:'SearchByType',
+      data:{
+        start_date:start_date,
+        end_date:end_date,
+      }
+    })
+    var length = res.result.list.length
+    var data = []
+    var Count = 0
+
+    for(var t = 0;t<length;t++){ 
+      Count+= res.result.list[t].count
+    }
+    
+    for(var i = 0;i<length;i++){
+      var obj = {
+        value:'',
+        ratio:0,
+      }
+      obj.value = this.getType(res.result.list[i]._id)
+      obj.ratio = (res.result.list[i].count / Count)*100
+      data.push(obj)
+    }
     return data;
   },
 

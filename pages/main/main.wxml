@@ -20,7 +20,9 @@
         <!-- <button bindtap="clickTotal" class="statistics" style="width: fit-content">查看图表分析</button> -->
     </view>
     <view class="data">
-        <block wx:for="{{array}}" wx:key="_id">
+        <!-- <block wx:for="{{array}}" wx:key="_id"> -->
+        <block wx:for="{{result}}">
+<!-- >>>>>>> Stashed changes -->
             <view class="item" data-index='{{item}}' bindtap="clickitem">
                 <image src='{{func.getImageSrc(item.type)}}' class="item-image" />
                 <view class="item-text">

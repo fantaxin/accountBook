@@ -13,7 +13,13 @@ Page({
             this.setData({
                 openid: openid,
             })
-        });
-
+            //app.newUser(this.data.openid)
+            //app.newUser('1')
+        });   
+        app.SearchExpand()
+        app.SearchIncome()
+        app.showMonthData()
+        app.getcolumnData()
+        app.getringData()
     },
 })

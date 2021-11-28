@@ -49,6 +49,7 @@ Page({
                     /**
                      * 此处添加云数据库删除函数
                      */
+                    app.Delete('',that.data.message._id)
                     prevPage.data.array.forEach((item, index) => {
                         if (item._id == that.data.message._id) {
                             prevPage.data.array.splice(index, 1);

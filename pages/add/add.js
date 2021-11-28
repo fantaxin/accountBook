@@ -117,13 +117,14 @@ Page({
         });
     },
     clickBtn: function () {
+//<<<<<<< Updated upstream
         let pages = getCurrentPages(); // 当前页，
         let prevPage = pages[pages.length - 2]; // 上一页
         this.setData({
             ['message.money']: parseFloat(this.data.money),
             ['message.note']: this.data.note,
         })
-
+        var self = this
         let preprevPage = pages[pages.length - 3];
         //修正支出收入
         var oldmoney = this.data.oldMoney;
@@ -173,11 +174,12 @@ Page({
              * TODO：
              * 在数据库中添加该条记录，并返回一个新的_id
              */
-            var id = app.Add(this.data.message, '');
-            console.log(id)
-            // this.setData({
-            //     ['message._id']: id, //临时用的id
-            // })
+            console.log(this.data.message.date)
+            app.Add('',this.data.message).then(res=>{
+                this.setData({
+                    _id:res.result._id
+                })
+            })
             prevPage.data.array.unshift(this.data.message);
             prevPage.setData({
                 array: prevPage.data.array,
@@ -185,8 +187,9 @@ Page({
                 expand: prevPage.data.expand - expand,
             });
         }
+        
         wx.navigateBack({
-            // delta: pages.length - 2,
+             delta: pages.length - 2,
         });
     }
 })
