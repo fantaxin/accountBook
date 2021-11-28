@@ -1,7 +1,20 @@
 <view class="container">
-    about
-    <view>{{openid}}</view>
+    <view class="title">
+        <text class="title-text">应用信息</text>
+        <view class="text-title">版本</view>
+        <view class="text-content">1.0.0</view>
+        <view class="text-title">关于小程序</view>
+        <view class="text-content">这是一款简洁的记账小程序</view>
+    </view>
+    <view class="title kaifazhe">
+        <text class="title-text">开发者</text>
+        <view class="text-title">关于我们</view>
+        <view class="text-content">王馨、吴嘉琪，软件工程专业的学生</view>
+        <view class="text-title">源代码</view>
+        <view class="text-content">
+            源代码已经托管在Gitee(https://gitee.com/fantasy_xin /account-book1)上, 欢迎大家来吐槽。
+        </view>
+    </view>
     <!-- 底部导航栏 -->
-	<mytabbar tabbar="{{tabbar}}"></mytabbar>
-
+    <mytabbar tabbar="{{tabbar}}"></mytabbar>
 </view>

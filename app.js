@@ -373,7 +373,7 @@ App({
           "pagePath": "/pages/about/about",
           "iconPath": "icon/about1.png",
           "selectedIconPath": "icon/about2.png",
-          "text": "便利贴"
+          "text": "关于"
         },
       ]
     },

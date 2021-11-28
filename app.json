@@ -1,10 +1,10 @@
 {
   "pages":[
     "pages/main/main", 
+    "pages/about/about",
+    "pages/setting/setting",
     "pages/add/add",  
     "pages/statistics/statistics",
-    "pages/setting/setting",
-    "pages/about/about",
     "components/tabbarComponent/tabbar",
     "pages/index/index",
     "pages/logs/logs",
